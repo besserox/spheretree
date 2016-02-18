@@ -5,26 +5,7 @@ AC_PROG_CXX
 AC_PROG_INSTALL
 AM_PROG_LIBTOOL
 
-# ** Test for for scope **
 AC_LANG_CPLUSPLUS()
-if test "x${GCC}" = "xyes"
-then
-  OLDCXXFLAGS="$CXXFLAGS";
-  CXXFLAGS="-fno-for-scope"
-  AC_CACHE_CHECK("for g++ -fno-for-scope option", has_gxx_no_for_scope,
-    AC_TRY_COMPILE(, [
-        for (int i = 0; i < 2; i++);
-        i = 0;
-       ],
-       [has_gxx_no_for_scope="yes"],
-       [has_gxx_no_for_scope="no"])
-      )
-  CXXFLAGS="$OLDCXXFLAGS";
-  if test "$has_gxx_no_for_scope" = "yes"
-  then
-    CXXFLAGS="$CXXFLAGS -fno-for-scope"
-  fi
-fi
 AC_LANG_C()
 
 #CFLAGS="$CFLAGS -g -pg"
